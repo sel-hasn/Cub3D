@@ -11,8 +11,13 @@ NAME_BONUS = cub3D_bonus
 
 NAME = cub3D
 
-
-MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw3 -L"/Users/$(USER)/.brew/opt/glfw/lib/" $(DIRMLX)
+# Detect OS and set linker flags accordingly
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	MLXFLAGS = -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/opt/homebrew/opt/glfw/lib/" -L"/Users/$(USER)/.brew/opt/glfw/lib/" $(DIRMLX)
+else
+	MLXFLAGS = $(DIRMLX) -ldl -lglfw -pthread -lm
+endif
 
 SRC = MANDATORY/cub.c MANDATORY/render_utils.c MANDATORY/load_wind.c MANDATORY/get_texture.c  MANDATORY/move_plyer.c MANDATORY/cast_rays.c MANDATORY/put_pixel.c \
 		 MANDATORY/first_point.c MANDATORY/draw_3d.c \
@@ -85,12 +90,12 @@ BONUS/%.o : BONUS/%.c BONUS/cub_bonus.h
 
 
 $(NAME) : $(OBJ)
-	$(CC) $(MLXFLAGS) $(SRC) -o $(NAME) 
+	$(CC) $(SRC) $(MLXFLAGS) -o $(NAME) 
 
 bonus : $(NAME_BONUS)
 
 $(NAME_BONUS) : $(OBJ_BONUS)
-	$(CC) $(MLXFLAGS) $(SRC_BONUS) -o $(NAME_BONUS)
+	$(CC) $(SRC_BONUS) $(MLXFLAGS) -o $(NAME_BONUS)
 
 
 clean :

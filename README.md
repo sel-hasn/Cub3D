@@ -41,10 +41,10 @@ This project is split into:
 
 ```bash
 # macOS (Homebrew)
-brew install glfw
+brew install glfw cmake
 
 # Linux (Debian/Ubuntu)
-sudo apt-get install libglfw3 libglfw3-dev
+sudo apt-get install libglfw3 libglfw3-dev cmake build-essential
 ```
 
 ### Build
@@ -58,6 +58,28 @@ make
 
 # Compile bonus version
 make bonus
+```
+
+### ⚠️ Platform Notes
+
+The project automatically detects your OS and uses the appropriate compiler flags:
+
+| Platform | Linker Flags |
+|----------|--------------|
+| **macOS** | `-framework Cocoa -framework OpenGL -framework IOKit -lglfw` |
+| **Linux** | `-ldl -lglfw -pthread -lm` |
+
+**If you encounter MLX42 linking errors on Linux**, you may need to recompile the library:
+
+```bash
+# Clone and build MLX42 for your platform
+git clone https://github.com/codam-coding-college/MLX42.git MLX42_build
+cd MLX42_build
+cmake -B build
+cmake --build build -j4
+cp build/libmlx42.a ../MLX42/
+cp include/MLX42/MLX42.h ../MLX42/.MLX42.h
+cd .. && rm -rf MLX42_build
 ```
 
 ---
@@ -162,6 +184,18 @@ cub3D/
 ### Mathematics
 - [DDA Algorithm Explained](https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)) — Line drawing algorithm used in raycasting
 - [Understanding FOV](https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays) — Field of view calculations
+
+---
+
+## 🔧 Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| `OPEN_MAX undeclared` | Already fixed in headers. If not, add `#define OPEN_MAX 1024` in `cub.h` |
+| `mlx_* undefined reference` | Recompile MLX42 for your platform (see Installation section) |
+| `-framework` errors on Linux | Makefile auto-detects OS. Run `make re` to rebuild |
+| `libglfw.so not found` | Install GLFW: `sudo apt-get install libglfw3 libglfw3-dev` |
+| Window doesn't open | Ensure you have OpenGL drivers installed |
 
 ---
 
