@@ -51,7 +51,7 @@ void	draw_fl_cl(t_data *data, int i)
 		y = 0;
 	while (x <= y)
 	{
-		put_pixel (data->img, i, x, data->map.floor);
+		put_pixel (data->img, i, x, data->map.ceiling);
 		x++;
 	}
 	x = H_S / 2 + data->ray[i].line / 2;
@@ -60,7 +60,7 @@ void	draw_fl_cl(t_data *data, int i)
 	y = H_S;
 	while (x <= y)
 	{
-		put_pixel (data->img, i, x, data->map.ceiling);
+		put_pixel (data->img, i, x, data->map.floor);
 		x++;
 	}
 }
