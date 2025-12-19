@@ -179,7 +179,6 @@ cub3D/
 
 ### 42 Project Resources
 - [42 Docs - cub3D](https://harm-smits.github.io/42docs/projects/cub3d) — Project overview and tips
-- [cub3D Guide by qst0](https://qst0.github.io/ft_libgfx/cub3d.html) — Implementation walkthrough
 
 ### Mathematics
 - [DDA Algorithm Explained](https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)) — Line drawing algorithm used in raycasting
