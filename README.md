@@ -186,8 +186,6 @@ cub3D/
 
 ---
 
----
-
 ## 👥 Contributors
 
 <table>
