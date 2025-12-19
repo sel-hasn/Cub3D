@@ -186,16 +186,6 @@ cub3D/
 
 ---
 
-## 🔧 Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| `OPEN_MAX undeclared` | Already fixed in headers. If not, add `#define OPEN_MAX 1024` in `cub.h` |
-| `mlx_* undefined reference` | Recompile MLX42 for your platform (see Installation section) |
-| `-framework` errors on Linux | Makefile auto-detects OS. Run `make re` to rebuild |
-| `libglfw.so not found` | Install GLFW: `sudo apt-get install libglfw3 libglfw3-dev` |
-| Window doesn't open | Ensure you have OpenGL drivers installed |
-
 ---
 
 ## 👥 Contributors
