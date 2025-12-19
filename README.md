@@ -205,10 +205,3 @@ cub3D/
   </tr>
 </table>
 
----
-
-<div align="center">
-
-Made with ❤️ at **42 Network**
-
-</div> 
